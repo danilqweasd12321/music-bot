@@ -40,6 +40,22 @@ var commands = {
   }
 };
 
+bot.on('ready', () => {
+	client.user.setGame('');
+	console.log("bots launching");
+	console.log("loading discord.js");
+	console.log("loading config");
+	console.log("loaded discord.js");
+	console.log("loaded config");
+	console.log("bots launched...");
+	client.user.setStatus('invisible');
+	client.user.setStatus('online');
+	client.user.setGame('type !help');
+	console.log("status seted or error!");
+	client.user.setUsername('MusicBot');
+	console.log("Nick seted or error!");
+});
+
 Bot.on('message', message => {
   WordService.registerMessage(message);
 
