@@ -41,18 +41,18 @@ var commands = {
 };
 
 Bot.on('ready', () => {
-	client.user.setGame('');
+	Bot.user.setGame('');
 	console.log("bots launching");
 	console.log("loading discord.js");
 	console.log("loading config");
 	console.log("loaded discord.js");
 	console.log("loaded config");
 	console.log("bots launched...");
-	client.user.setStatus('invisible');
-	client.user.setStatus('online');
-	client.user.setGame('type !help');
+	Bot.user.setStatus('invisible');
+	Bot.user.setStatus('online');
+	Bot.user.setGame('type !help');
 	console.log("status seted or error!");
-	client.user.setUsername('MusicBot');
+	Bot.user.setUsername('MusicBot');
 	console.log("Nick seted or error!");
 });
 
