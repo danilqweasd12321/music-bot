@@ -40,7 +40,7 @@ var commands = {
   }
 };
 
-bot.on('ready', () => {
+Bot.on('ready', () => {
 	client.user.setGame('');
 	console.log("bots launching");
 	console.log("loading discord.js");
