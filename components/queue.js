@@ -22,7 +22,7 @@ module.exports = Queue = function() {
 Queue.prototype.add = function(track, message) {
   this.queue.push(track);
 
-  message.reply(Helper.wrap('Added ' + track.title + ' to the queue. (number ' + (this.queue.indexOf(track) + 1) + ')'));
+  message.reply(Helper.wrap('Добавлен ' + track.title + ' на очереди. (number ' + (this.queue.indexOf(track) + 1) + ')'));
 
   if (this.queue.length == 1) {
     this.play(message);
@@ -39,12 +39,12 @@ Queue.prototype.play = function(message) {
 
   if (!channel) {
     vm.queue = [];
-    return message.reply(Helper.wrap('You are not in a voice channel.'));
+    return message.reply(Helper.wrap('У вас нет голосового канала.'));
   }
 
   var toPlay = vm.queue[0];
   if (!toPlay) {
-    return message.reply(Helper.wrap('No songs in queue.'));
+    return message.reply(Helper.wrap('Нет песен в очереди.'));
   }
 
   channel.join().then(connection => {
@@ -64,7 +64,7 @@ Queue.prototype.play = function(message) {
     });
 
     vm.skipVotes = [];
-    message.channel.sendMessage(Helper.wrap('Now playing: ' + toPlay.title));
+    message.channel.sendMessage(Helper.wrap('Сейчас играет: ' + toPlay.title));
   }).catch(console.error);
 }
 
@@ -72,9 +72,9 @@ Queue.prototype.showSong = function(message) {
   var song = this.queue[0];
 
   if (song) {
-    return message.reply(Helper.wrap('Now playing: ' + song.title + '\n' + song.url));
+    return message.reply(Helper.wrap('Сейчас играет: ' + song.title + '\n' + song.url));
   } else {
-    return message.reply(Helper.wrap('No song is currently playing.'));
+    return message.reply(Helper.wrap('В настоящий момент ни одна песня не воспроизводится.'));
   }
 }
 
@@ -83,20 +83,20 @@ Queue.prototype.voteSkip = function(message) {
   var channel = getAuthorVoiceChannel(message);
 
   if (!vm.currentDispatcher) {
-    return message.reply(Helper.wrap('No song is currently playing.'));
+    return message.reply(Helper.wrap('В настоящий момент ни одна песня не воспроизводится.'));
   }
 
   if (vm.admins.includes(message.member.user.id)) {
     this.currentDispatcher.end();
-    return message.reply(Helper.wrap('Of course sir.'));
+    return message.reply(Helper.wrap('Конечно, сэр.'));
   }
 
   if (!channel) {
-    return message.reply(Helper.wrap("You are not allowed to voteskip since you're not in the channel."));
+    return message.reply(Helper.wrap("Вам не разрешено проголосовать, поскольку вы не находитесь в канале."));
   }
 
   if (vm.skipVotes.indexOf(message.author.id) > -1) {
-    return message.reply(Helper.wrap('You have already voted to skip this song.'));
+    return message.reply(Helper.wrap('Вы уже проголосовали, чтобы пропустить эту песню.'));
   }
 
   vm.skipVotes.push(message.author.id);
@@ -107,7 +107,7 @@ Queue.prototype.voteSkip = function(message) {
     this.currentDispatcher.end();
   } else {
     var votesNeeded = getAmountOfVotesNeeded(totalMembers, vm.skipVotes.length, vm.skipmajority);
-    return message.reply(Helper.wrap('You need ' + votesNeeded + ' more vote(s) to skip this song.'));
+    return message.reply(Helper.wrap('Тебе нужно ' + votesNeeded + ' больше голосов (ы), чтобы пропустить эту песню.'));
   }
 }
 
@@ -117,7 +117,7 @@ Queue.prototype.remove = function(message) {
   if (this.queue.length > 0) {
     this.play(message);
   } else {
-    message.channel.sendMessage(Helper.wrap('No more songs in queue.'));
+    message.channel.sendMessage(Helper.wrap('Больше нет песен в очереди.'));
   }
 }
 
