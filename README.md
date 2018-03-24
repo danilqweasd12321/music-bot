@@ -9,8 +9,8 @@
 | !roll           | roll from 1-100                                      | `!roll`           |
 | !help           | list all commands                                    | `!help`           |
 | !words          | list the most common words by user, defaults to you  | `!words John`     |
-| !queue          | enter a youtube URL to queue or a search word        | `!queue house`    |
-| !voteskip       | vote to skip the current song                        | `!voteskip`       |
+| !play           | enter a youtube URL to play  or a search word        | `!play house`     |
+| !skip           | skip the current song                                | `!skip`           |
 | !song           | get the URL & title of the current song              | `!song`           |
 
 The preferred way to deploy this Bot is via Heroku. Using Heroku means that the bot doesn't run on your computer,
