@@ -7,34 +7,34 @@ var WordService = require('./components/wordservice.js');
 var WeatherService = require('./components/weatherservice.js');
 
 var commands = {
-  '!video': {
+  'm!video': {
     execute: getVideo,
     description: 'Получить видео с YouTube по поисковому слову'
   },
-  '!weather': {
+  'm!weather': {
     execute: getWeather,
     description: 'Получить текущую погоду для данного города, по умолчанию Стокгольм'
   },
-  '!roll': {
+  'm!roll': {
     execute: roll,
     description: 'Рулон от 1 до 100'
   },
-  '!help': {
+  'm!help': {
     execute: showHelp
   },
-  '!words': {
+  'm!words': {
     execute: countWordsByUser,
     description: 'Получить самые популярные слова для пользователя данного имени пользователя, по умолчанию используется ваше имя пользователя'
   },
-  '!play': {
+  'm!play': {
     execute: doQueue,
     description: 'Сыграть свою песню'
   },
-  '!skip': {
+  'm!skip': {
     execute: voteSkip,
     description: 'Пропустить текущую песню'
   },
-  '!song': {
+  'm!song': {
     execute: showSong,
     description: 'Получить текущую песню'
   }
@@ -116,7 +116,7 @@ function showHelp(args, message) {
   if (Object.keys(commands).length > 1) {
     var toReturn = 'Доступные команды:\n';
     for (var command in commands) {
-      if (command != '!help') {
+      if (command != 'm!help') {
         data = commands[command];
         toReturn += command + ': ' + data.description + getAvailableCommandAsText(data) + '\n';
       }
@@ -136,7 +136,7 @@ function roll(content, message) {
 }
 
 function isBotCommand(message) {
-  if (message.content.startsWith('!') && message.author.id != Bot.user.id) {
+  if (message.content.startsWith('m!') && message.author.id != Bot.user.id) {
     return true;
   }
 
@@ -187,10 +187,10 @@ function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
 
-    Queue = registerService(Queue, ['!play', '!skip', '!song']);
-    TrackHelper = registerService(TrackHelper, ['!play', '!video']);
-    WordService = registerService(WordService, ['!words']);
-    WeatherService = registerService(WeatherService, ['!weather']);
+    Queue = registerService(Queue, ['m!play', 'm!skip', 'm!song']);
+    TrackHelper = registerService(TrackHelper, ['m!play', 'm!video']);
+    WordService = registerService(WordService, ['m!words']);
+    WeatherService = registerService(WeatherService, ['m!weather']);
   }).catch(console.error);
 }
 
