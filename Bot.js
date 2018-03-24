@@ -26,11 +26,11 @@ var commands = {
     execute: countWordsByUser,
     description: 'get the most popular words for user of the given username, defaults to your username'
   },
-  '!queue': {
+  '!play': {
     execute: doQueue,
     description: 'queue your song'
   },
-  '!voteskip': {
+  '!skip': {
     execute: voteSkip,
     description: 'vote to skip the current song'
   },
@@ -41,7 +41,6 @@ var commands = {
 };
 
 Bot.on('ready', () => {
-	Bot.user.setGame('');
 	console.log("bots launching");
 	console.log("loading discord.js");
 	console.log("loading config");
@@ -74,11 +73,11 @@ function voteSkip(args, message) {
 
 function doQueue(args, message) {
   if (args.length <= 0) {
-    return message.reply(Helper.wrap('Type of music need to be specified.'));
+    return message.reply(Helper.wrap('Напишите название музыки.'));
   }
 
   if (Queue.isFull()) {
-    return message.reply(Helper.wrap('Queue is full.'));
+    return message.reply(Helper.wrap('список уже полный.'));
   }
 
   if (args.startsWith('http')) {
@@ -127,13 +126,13 @@ function showHelp(args, message) {
 }
 
 function getAvailableCommandAsText(command) {
-  if (!Helper.commandIsAvailable(command)) return ' (not available)';
+  if (!Helper.commandIsAvailable(command)) return ' (не доступно)';
 
   return '';
 }
 
 function roll(content, message) {
-  message.reply(Helper.wrap('You rolled ' + getRandomNumber(1, 100) + ' (1-100)'));
+  message.reply(Helper.wrap('на roll ' + getRandomNumber(1, 100) + ' (1-100)'));
 }
 
 function isBotCommand(message) {
@@ -152,7 +151,7 @@ function execute(content, message) {
 
 function executeCommand(command, message, args) {
   if (!Helper.commandIsAvailable(command)) {
-    return message.reply(Helper.wrap('Command is not available.'));
+    return message.reply(Helper.wrap('Команда не доступен.'));
   }
 
   command.execute(getCommandArguments(args), message);
@@ -188,8 +187,8 @@ function init() {
   Helper.keys('apikeys', ['discord']).then(keys => {
     Bot.login(keys.discord);
 
-    Queue = registerService(Queue, ['!queue', '!voteskip', '!song']);
-    TrackHelper = registerService(TrackHelper, ['!queue', '!video']);
+    Queue = registerService(Queue, ['!play', '!skip', '!song']);
+    TrackHelper = registerService(TrackHelper, ['!play', '!video']);
     WordService = registerService(WordService, ['!words']);
     WeatherService = registerService(WeatherService, ['!weather']);
   }).catch(console.error);
