@@ -31,7 +31,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
 
   return new Promise(function(resolve, reject) {
     youTube.search(searchWord, amount, function(error, result) {
-      if (error) reject('No videos found.');
+      if (error) reject('Видео не найдено.');
 
       result.items.forEach(function(item) {
         if (item.id.videoId) {
@@ -44,7 +44,7 @@ TrackHelper.prototype.getRandomTrack = function(searchWord, amount) {
         return video && video.url && video.title;
       });
 
-      if (!track) return reject('No videos found from searchword ' + searchWord);
+      if (!track) return reject('Не найдено ни одного видео из поискового запроса ' + searchWord);
       return resolve(track);
     });
   });
