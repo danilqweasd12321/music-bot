@@ -9,34 +9,34 @@ var WeatherService = require('./components/weatherservice.js');
 var commands = {
   '!video': {
     execute: getVideo,
-    description: 'get a youtube video by search word'
+    description: 'Получить видео с YouTube по поисковому слову'
   },
   '!weather': {
     execute: getWeather,
-    description: 'get current weather for the given city, defaults to Stockholm'
+    description: 'Получить текущую погоду для данного города, по умолчанию Стокгольм'
   },
   '!roll': {
     execute: roll,
-    description: 'roll from 1-100'
+    description: 'Рулон от 1 до 100'
   },
   '!help': {
     execute: showHelp
   },
   '!words': {
     execute: countWordsByUser,
-    description: 'get the most popular words for user of the given username, defaults to your username'
+    description: 'Получить самые популярные слова для пользователя данного имени пользователя, по умолчанию используется ваше имя пользователя'
   },
   '!play': {
     execute: doQueue,
-    description: 'queue your song'
+    description: 'Сыграть свою песню'
   },
   '!skip': {
     execute: voteSkip,
-    description: 'vote to skip the current song'
+    description: 'Пропустить текущую песню'
   },
   '!song': {
     execute: showSong,
-    description: 'get the current song'
+    description: 'Получить текущую песню'
   }
 };
 
@@ -77,7 +77,7 @@ function doQueue(args, message) {
   }
 
   if (Queue.isFull()) {
-    return message.reply(Helper.wrap('список уже полный.'));
+    return message.reply(Helper.wrap('Список уже полный.'));
   }
 
   if (args.startsWith('http')) {
@@ -112,9 +112,9 @@ function getWeather(args, message) {
 }
 
 function showHelp(args, message) {
-  var toReturn = 'No commands to run!';
+  var toReturn = 'Нет команды чтобы запустить!';
   if (Object.keys(commands).length > 1) {
-    var toReturn = 'Available commands:\n';
+    var toReturn = 'Доступные команды:\n';
     for (var command in commands) {
       if (command != '!help') {
         data = commands[command];
@@ -126,13 +126,13 @@ function showHelp(args, message) {
 }
 
 function getAvailableCommandAsText(command) {
-  if (!Helper.commandIsAvailable(command)) return ' (не доступно)';
+  if (!Helper.commandIsAvailable(command)) return ' (Не доступно)';
 
   return '';
 }
 
 function roll(content, message) {
-  message.reply(Helper.wrap('на roll ' + getRandomNumber(1, 100) + ' (1-100)'));
+  message.reply(Helper.wrap('На roll ' + getRandomNumber(1, 100) + ' (1-100)'));
 }
 
 function isBotCommand(message) {
