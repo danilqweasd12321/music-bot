@@ -73,7 +73,7 @@ function voteSkip(args, message) {
 
 function doQueue(args, message) {
   if (args.length <= 0) {
-    return message.reply(Helper.wrap('Напишите название музыки.'));
+    return message.reply(Helper.wrap('Сделайте сслыку музыки, например https://www.youtube.com/watch?v=ih2xubMaZWI'));
   }
 
   if (Queue.isFull()) {
