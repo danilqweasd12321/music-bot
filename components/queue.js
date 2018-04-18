@@ -12,7 +12,7 @@ module.exports = Queue = function() {
   Helper.keys('queue', ['maxlen', 'skipmajority']).then(values => {
     vm.maxlen = values.maxlen;
     vm.skipmajority = values.skipmajority;
-    vm.admins = ['234272258934308864'];
+    vm.admins = ['409257766939656205'];
   }).catch(err => {
     console.log(err);
     vm.hasUnmetDepedencies = true;
