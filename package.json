@@ -1,5 +1,5 @@
 {
-  "name": "Supah-Bot",
+  "name": "musicbot",
   "version": "1.0.0",
   "description": "Cool playback bot with other awesome features.",
   "main": "Bot.js",
