@@ -117,8 +117,8 @@ Queue.prototype.remove = function(message) {
   if (this.queue.length > 0) {
     this.play(message);
   } else {
-    channel..leave()
     message.channel.sendMessage(Helper.wrap('Больше нет песен в очереди.'));
+    
   }
 }
 
