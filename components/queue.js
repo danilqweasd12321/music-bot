@@ -113,6 +113,7 @@ Queue.prototype.voteSkip = function(message) {
 
 Queue.prototype.remove = function(message) {
   this.queue.shift();
+  var channel = getAuthorVoiceChannel(message);
 
   if (this.queue.length > 0) {
     this.play(message);
